@@ -4,6 +4,13 @@ import tabulate
 
 def qsort(a, pivot_fn):
     ## TO DO
+    if len(a) <= 1:
+        return a
+    else:
+        pivot = a[0]
+        left = list(filter(lambda x: x < pivot, a[1:]))  # O(|a|) work, O(log|a|) span
+        right = list(filter(lambda x: x >= pivot, a[1:]))  # O(|a|) work, O(log|a|) span
+        return qsort(l,pivot_fn) + [pivot] + qsort(r,pivot_fn)
     pass
     
 def time_search(sort_fn, mylist):
