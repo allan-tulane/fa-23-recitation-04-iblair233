@@ -8,11 +8,22 @@ def qsort(a, pivot_fn):
         return a
     else:
         pivot = a[0]
-        left = list(filter(lambda x: x < pivot, a[1:]))  # O(|a|) work, O(log|a|) span
-        right = list(filter(lambda x: x >= pivot, a[1:]))  # O(|a|) work, O(log|a|) span
+        left = list(filter(lambda x: x < pivot, a[1:])) # list of elements less than pivot  
+        right = list(filter(lambda x: x >= pivot, a[1:])) # list of elements more than pivot
         return qsort(l,pivot_fn) + [pivot] + qsort(r,pivot_fn)
-    pass
-    
+
+def qsort_fixed_pivot(a):
+    return qsort(a, lambda a: a[0])
+
+def qsort_random_pivot(a):
+    return qsort(a, lambda a: random.choice(a))
+
+def selection_sort(L):
+    for i in range(len(L)):
+        m = L.index(min(L[i:]))
+        L[i], L[m] = L[m], L[i]
+    return L
+
 def time_search(sort_fn, mylist):
     """
     Return the number of milliseconds to run this
